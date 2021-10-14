@@ -5,6 +5,7 @@ import UIKit
 import PlaygroundSupport
 import SwiftUI
 import CoreGraphics
+import AVKit
 
 struct ContentView: View {
     
@@ -20,6 +21,15 @@ struct ContentView: View {
     @State private var heart1PositionX: CGFloat = 0
     @State private var heart1PositionY: CGFloat = 0
     @State private var heart1Dimention: CGFloat = 1.0
+    @State private var player:AVAudioPlayer!
+    
+   
+    let sound8 = Bundle.main.path(forResource: "Sad", ofType: "mp3")
+    
+    let sound9 = Bundle.main.path(forResource: "UFO", ofType: "mp3")
+
+    let sound10 = Bundle.main.path(forResource: "aliens1", ofType: "mp3")
+     
     
     
     
@@ -151,7 +161,9 @@ struct ContentView: View {
         .frame(width: 600, height: 800)
         .onTapGesture {
             if(animation == 1){
-                
+                player = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound8!))
+                player.prepareToPlay()
+                player.play()
                 
                 opacityOne = Double(1)
                 ball7PositionX += -14
@@ -162,6 +174,13 @@ struct ContentView: View {
                 
                 
             } else if (animation == 2) {
+                player.stop()
+                
+               
+                player = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound9!))
+                player.prepareToPlay()
+                player.play()
+                
                 opacityTwo = Double(1)
                 spacechip1PositionX += 30
                 spacechip1PositionY += 70
@@ -169,6 +188,13 @@ struct ContentView: View {
                 
                 
             } else if (animation == 3) {
+                player.stop()
+                
+               
+                player = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound10!))
+                player.prepareToPlay()
+                player.play()
+                
                 opacityThree = Double(1)
                 heart1PositionX += -60
                 heart1PositionY -= 150

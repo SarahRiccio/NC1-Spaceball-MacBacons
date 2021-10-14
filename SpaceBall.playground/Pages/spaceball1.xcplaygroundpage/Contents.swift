@@ -3,6 +3,7 @@ import UIKit
 import PlaygroundSupport
 import SwiftUI
 import CoreGraphics
+import AVKit
 
 struct ContentView: View {
     
@@ -20,8 +21,13 @@ struct ContentView: View {
     @State private var ball3PositionX: CGFloat = 320
     @State private var ball3PositionY: CGFloat = -100
     @State private var ball3Dimention: CGFloat = 2.0
+    @State private var player:AVAudioPlayer!
     
-    
+    let sound1 = Bundle.main.path(forResource: "giocano-calcio", ofType: "mp3")
+    let sound2 = Bundle.main.path(forResource: "Suono-palleggi", ofType: "mp3")
+    let sound3 = Bundle.main.path(forResource: "Suono-calcio", ofType: "mp3")
+    let sound4 = Bundle.main.path(forResource: "Suono-Vento", ofType: "mp3")
+                    
     
     
     var body: some View {
@@ -198,16 +204,37 @@ struct ContentView: View {
             if(animation == 1){
                 
                 
+                player = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound1!))
+                player.prepareToPlay()
+                player.play()
+                
                 opacityOne = Double(1)
                 ball1Position += -20
                 ball1rotation -= 20
+               
                 
             } else if (animation == 2) {
+                player.stop()
+                
+               
+                player = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound2!))
+                player.prepareToPlay()
+                player.play()
+                 
                 opacityTwo = Double(1)
                 eyebrowsPosition += -9
                 
                 
+                
             } else if (animation == 3) {
+                
+                player.stop()
+                
+               
+                player = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound3!))
+                player.prepareToPlay()
+                player.play()
+                
                 opacityThree = Double(1)
                 ball2PositionX += 160
                 ball2PositionY -= 60
@@ -216,6 +243,14 @@ struct ContentView: View {
                 
                 
             } else if (animation == 4) {
+                
+                player.stop()
+                
+               
+                player = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound4!))
+                player.prepareToPlay()
+                player.play()
+                
                 opacityFour = Double(1)
                 ball3PositionX += 280
                 ball3PositionY -= 100

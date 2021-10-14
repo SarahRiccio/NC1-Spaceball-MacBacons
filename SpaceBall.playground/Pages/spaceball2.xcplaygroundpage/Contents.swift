@@ -4,6 +4,7 @@ import UIKit
 import PlaygroundSupport
 import SwiftUI
 import CoreGraphics
+import AVKit
 
 struct ContentView: View {
     
@@ -19,6 +20,11 @@ struct ContentView: View {
     @State private var ball6PositionX: CGFloat = 360
     @State private var ball6PositionY: CGFloat = -130
     @State private var ball6Dimention: CGFloat = 3.0
+    @State private var player:AVAudioPlayer!
+    
+    let sound5 = Bundle.main.path(forResource: "Suono-spazio", ofType: "mp3")
+    let sound6 = Bundle.main.path(forResource: "Sound-Hit", ofType: "mp3")
+    let sound7 = Bundle.main.path(forResource: "Suono-caduta", ofType: "mp3")
     
     
     
@@ -153,6 +159,10 @@ struct ContentView: View {
         .onTapGesture {
             if(animation == 1){
                 
+                player = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound5!))
+                player.prepareToPlay()
+                player.play()
+                
                 
                 opacityOne = Double(1)
                 ball4PositionX += 110
@@ -162,6 +172,13 @@ struct ContentView: View {
                 
                 
             } else if (animation == 2) {
+                player.stop()
+                
+               
+                player = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound6!))
+                player.prepareToPlay()
+                player.play()
+                
                 opacityTwo = Double(1)
                 ball5PositionX += 30
                 ball5PositionY -= 10
@@ -171,6 +188,13 @@ struct ContentView: View {
                 
                 
             } else if (animation == 3) {
+                player.stop()
+                
+               
+                player = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound7!))
+                player.prepareToPlay()
+                player.play()
+                
                 opacityThree = Double(1)
                 ball6PositionX += 50
                 ball6PositionY += 80

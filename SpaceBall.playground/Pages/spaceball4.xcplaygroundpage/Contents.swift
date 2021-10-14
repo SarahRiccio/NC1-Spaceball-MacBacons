@@ -5,6 +5,7 @@ import UIKit
 import PlaygroundSupport
 import SwiftUI
 import CoreGraphics
+import AVKit
 
 struct ContentView: View {
     
@@ -22,6 +23,12 @@ struct ContentView: View {
     @State private var heart1PositionY: CGFloat = 0
     @State private var ball8rotation: Double = 0.0
     @State private var ball9rotation: Double = 0.0
+    @State private var player:AVAudioPlayer!
+    
+    let sound11 = Bundle.main.path(forResource: "UFO2", ofType: "mp3")
+    let sound12 = Bundle.main.path(forResource: "HappyEnding", ofType: "mp3")
+ 
+    
     
     
     
@@ -54,7 +61,7 @@ struct ContentView: View {
                         .linear(duration: 1)
                     )
                     
-                    Image(uiImage: UIImage(named: "Page1d")!)
+                    Image(uiImage: UIImage(named: "Page1d2")!)
                         .resizable()
                         .aspectRatio( contentMode: .fit)
                         .frame(width: 130, height: 69, alignment: .bottomLeading )
@@ -179,6 +186,10 @@ struct ContentView: View {
         .frame(width: 600, height: 800)
         .onTapGesture {
             if(animation == 1){
+                player = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound11!))
+                
+                player.prepareToPlay()
+                player.play()
                 
                 
                 opacityOne = Double(1)
@@ -191,6 +202,13 @@ struct ContentView: View {
                 
                 
             } else if (animation == 2) {
+                player.stop()
+                
+               
+                player = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound12!))
+                player.prepareToPlay()
+                player.play()
+                
                 opacityTwo = Double(1)
                 heart2PositionX += 0
                 heart2PositionY += -10
@@ -200,6 +218,8 @@ struct ContentView: View {
                 
                 
             } else if (animation == 3) {
+                
+                
                 opacityThree = Double(1)
                 heart1PositionX += -110
                 heart1PositionY += 42
