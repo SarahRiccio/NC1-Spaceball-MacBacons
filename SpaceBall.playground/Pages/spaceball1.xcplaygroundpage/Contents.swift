@@ -11,6 +11,7 @@ struct ContentView: View {
     @State private var opacityTwo: Double = 0
     @State private var opacityThree: Double = 0
     @State private var opacityFour: Double = 0
+    @State private var opacityText: Double = 1
     @State private var animation = 1
     @State private var ball1Position: CGFloat = 295
     @State private var ball1rotation: Double = 0.0
@@ -42,10 +43,11 @@ struct ContentView: View {
                     .frame( width: 600, alignment: .bottomLeading )
                     .offset(x:0, y: -0)
                 
-                /*Text("Hello i'm a \nlittle ball")
+                Text("Click anywhere to continue")
                     .multilineTextAlignment(.center)
-                    .font(Font.custom("Action_Man", size:23))
-                    .offset(x:99, y: -680)*/
+                    .font(Font.custom("Action_Man", size:16))
+                    .opacity(opacityText)
+                    .offset(x:189, y: -778)
                     
                     
                 Group {
@@ -211,6 +213,7 @@ struct ContentView: View {
                 opacityOne = Double(1)
                 ball1Position += -20
                 ball1rotation -= 20
+                opacityText = Double (0)
                
                 
             } else if (animation == 2) {
